@@ -5,7 +5,7 @@ info:
   description: 'Global description of my API'
   version: 1.0.0
 servers:
- - url: https://STD21084.com
+ - url: https://STD21086.com
 tags: 
   - name: Cinema
     description: sale de cinema
