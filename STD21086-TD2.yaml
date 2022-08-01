@@ -249,7 +249,80 @@ paths:
           description: not found
           content:
             html/plain text:
-              example: <h1> page not found</h1> 
+              example: <h1> page not found</h1>    
+              
+              
+  /Calendar:
+    get:
+      tags:
+        - "Calendar"
+      summary: Calendar fo film projection
+      parameters:
+        - name: Calendar
+          in: path
+          required: true
+          schema:
+            type: "string"
+      responses:
+          200:
+            description: Success
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/NewCalendar"
+/Calendar/{id}:
+    get:
+      tags:
+        - "Calendar"
+      summary: Get calendar with specific id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/NewCalendar"
+        400:
+          description: bad request
+    put:
+      tags:
+        - "Calendar"
+      summary: update calendar with specified id  
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        description: update
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Calendar"
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewCalendar"
+        400:
+          description: Error
+          content: {}
+        
+              
+              
+              
+              
+              
 components:
   schemas:
     room:
@@ -307,3 +380,16 @@ components:
             $ref: '#/components/schemas/films'
           room:
             $ref: '#/components/schemas/room'
+            
+            
+    Calendar:
+      type: object
+      properties:
+        date Start:
+          format: date-time
+        date End:
+          format: date-time
+        Day:
+          items:
+            $ref: "#/components/schemas/day" 
+   
